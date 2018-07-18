@@ -9,8 +9,25 @@ import java.awt.Choice;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class MainWindow extends JFrame {
+
+	private JPanel jpanel1;
+	private JPanel jpanel2;
+	private JTabbedPane tabbedPane;
+	private JTextArea txtrEnterUrlHere;
+	private JButton btnGetimage;
+	private JButton btnGetfile;
+	private Choice choice;
+	private JLabel lblFormat;
+	private JMenuBar menuBar;
+	private JMenu mnFile;
+	private JMenuItem mntmSaveImage;
+	private JMenu mnOptions;
+	private JMenuItem mntmExit;
 
 	public MainWindow(int windth,int height) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,38 +35,37 @@ public class MainWindow extends JFrame {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JPanel jpanel1 = new JPanel(null);
-		JPanel jpanel2 = new JPanel(null);
+		jpanel1 = new JPanel(null);
+		jpanel2 = new JPanel(null);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(10, 81, 604, 350);
 		getContentPane().add(tabbedPane);
-		setVisible(true);
 		setResizable(false);
 		tabbedPane.addTab("Tab 1", jpanel1);
 		
-		JTextArea txtrEnterUrlHere = new JTextArea();
+		txtrEnterUrlHere = new JTextArea();
 		txtrEnterUrlHere.setText("Enter URL here....");
 		txtrEnterUrlHere.setBounds(10, 43, 579, 279);
 		jpanel1.add(txtrEnterUrlHere);
 		
-		JButton btnGetimage = new JButton("GetImage");
+		btnGetimage = new JButton("GetImage");
 		btnGetimage.addActionListener(e -> System.out.println(1));
 		btnGetimage.setBounds(10, 11, 89, 23);
 		jpanel1.add(btnGetimage);
 		
-		JButton btnGetfile = new JButton("GetFile");
+		btnGetfile = new JButton("GetFile");
 		btnGetfile.setBounds(500, 9, 89, 23);
 		jpanel1.add(btnGetfile);
 		tabbedPane.addTab("Tab 2", jpanel2);
 		
-		Choice choice = new Choice();
+		choice = new Choice();
 		choice.setBounds(537, 10, 62, 20);
 		jpanel2.add(choice);
 		choice.add("png");
 		choice.add("jpg");
 		
-		JLabel lblFormat = new JLabel("Format");
+		lblFormat = new JLabel("Format");
 		lblFormat.setBounds(485, 10, 46, 20);
 		jpanel2.add(lblFormat);
 		
@@ -60,6 +76,27 @@ public class MainWindow extends JFrame {
 		});
 		btnViewe.setBounds(10, 10, 89, 23);
 		jpanel2.add(btnViewe);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 634, 21);
+		getContentPane().add(menuBar);
+		
+		mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		mntmSaveImage = new JMenuItem("Save image");
+		mnFile.add(mntmSaveImage);
+		
+		mnOptions = new JMenu("Options");
+		menuBar.add(mnOptions);
+		
+		mntmExit = new JMenuItem("Exit");
+		mnOptions.add(mntmExit);
+		
+		//menuBar.repaint();
+		//mnFile.updateUI();
+		//mnOptions.updateUI();
+		setVisible(true);
 		
 		
 	}
