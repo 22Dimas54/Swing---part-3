@@ -20,7 +20,7 @@ public class Main {
 
 	public static void setImage(URL url) {
 		try {
-			ImageIO.read(url);
+			image = ImageIO.read(url);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,14 +29,14 @@ public class Main {
 
 	public static void setImage(File file) {
 		try {
-			ImageIO.read(file);
+			image = ImageIO.read(file);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	public static void saveImage(File file, String format) {
 		try {
 			ImageIO.write(image, format, file);
