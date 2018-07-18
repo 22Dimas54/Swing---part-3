@@ -6,6 +6,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Choice;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -72,6 +74,15 @@ public class MainWindow extends JFrame {
 		jpanel1.add(btnGetimage);
 
 		btnGetfile = new JButton("GetFile");
+		btnGetfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				int replay = chooser.showOpenDialog(null);
+				if(replay == JFileChooser.APPROVE_OPTION) {
+					Main.setImage(chooser.getSelectedFile());
+				}
+			}
+		});
 		btnGetfile.setBounds(500, 9, 89, 23);
 		jpanel1.add(btnGetfile);
 		tabbedPane.addTab("Tab 2", jpanel2);
@@ -116,12 +127,27 @@ public class MainWindow extends JFrame {
 		menuBar.add(mnFile);
 
 		mntmSaveImage = new JMenuItem("Save image");
+		mntmSaveImage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				int replay = chooser.showSaveDialog(null);
+				if(replay == JFileChooser.APPROVE_OPTION) {
+					Main.saveImage(chooser.getSelectedFile(), choice.getSelectedItem());
+				}
+			}
+		});
 		mnFile.add(mntmSaveImage);
 
 		mnOptions = new JMenu("Options");
 		menuBar.add(mnOptions);
 
 		mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		mnOptions.add(mntmExit);
 
 		// menuBar.repaint();
